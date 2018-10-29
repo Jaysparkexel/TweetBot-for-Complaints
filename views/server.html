@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TweetBot Server</title>
+    <script
+            src="https://code.jquery.com/jquery-3.1.1.min.js"
+            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style>
+        input:-webkit-autofill,
+        input:-webkit-autofill:hover,
+        input:-webkit-autofill:focus,
+        input:-webkit-autofill:active {
+            transition: background-color 5000s ease-in-out 0s;
+        }
+    </style>
+    <!--<script src='https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.4/js/standalone/selectize.js'></script>-->
+</head>
+<body>
+
+<div class="container">
+
+    <div class="jumbotron">
+        <h1 id="message"></h1>
+        <div class="container">
+            <form>
+                <div class="form-group col-xs-4">
+                    <label for="tweethandle">Enter Tweet Handle</label>
+                    <input type="text" class="form-control" id="tweethandle" name="tweethandle" required/>
+                </div>
+                <!--<script>-->
+                    <!--$('#tweethandle').selectize({-->
+                        <!--plugins: ['remove_button'],-->
+                        <!--delimiter: ' ',-->
+                        <!--persist: false,-->
+                        <!--create: function(input) {-->
+                            <!--return {-->
+                                <!--value: input,-->
+                                <!--text: input-->
+                            <!--}-->
+                        <!--}-->
+                    <!--});-->
+                <!--</script>-->
+                <div class="form-group col-xs-4">
+                    <lable for="nlpselection">Choose which NLP Service you want to use?</lable>
+                    <div class="radio">
+                        <label>
+                            <input type="radio"  name="nlpselection" value="Aylien" checked>
+                            Aylien
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input type="radio"  name="nlpselection" value="Google" checked>
+                            Google Cloud
+                        </label>
+                    </div>
+                </div>
+                <div>
+                    <input type="submit" class="btn btn-lg" id="submit-event" value="Submit"/>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+<script>
+    function stopServerPage() {
+        $("#message").text("Stop Server!")
+        $("#tweethandle").attr("disabled", "")
+        $(".radio").addClass("disabled")
+        $("#submit-event").removeClass("btn-success").addClass("btn-danger").attr("value", "Stop")
+    }
+
+    function startServerPage() {
+        $("#message").text("Start Server!")
+        $("#tweethandle").removeAttr("disabled")
+        $(".radio").removeClass("disabled")
+        $("#submit-event").addClass("btn-success").removeClass("btn-danger").attr("value", "Submit")
+    }
+</script>
+<script>
+    var socket = io();
+    socket.on("startServerAck", function (serverStatus) {
+//        console.log("Server On:" +serverStatus)
+        stopServerPage()
+    })
+    socket.on("stopServerAck", function (serverStatus) {
+        startServerPage()
+    })
+    socket.on("serverStatusRes", function (serverStatus) {
+//        console.log("Server Status: " +serverStatus)
+        if(serverStatus == true){
+            stopServerPage()
+        }
+        else {
+            startServerPage()
+
+        }
+    })
+    socket.on("connectionAck", function (stat) {
+        socket.emit("serverStatusReq", true)
+    })
+</script>
+
+<script>
+    $('form').submit( function(e) {
+        e.preventDefault()
+        var button = $("#submit-event").attr("value")
+        if( button == "Submit"){
+            var tag = $('#tweethandle').val()
+//            $('#tweethandle').val('')
+            var selectedNlp = $('input[name=nlpselection]:checked').val()
+            var jsonReq = {
+                tag: tag,
+                selectedNlp: selectedNlp
+            }
+            socket.emit("startServer", jsonReq)
+        }else {
+            socket.emit("stopServer", true)
+        }
+
+    })
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TweetBot</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script
+            src="https://code.jquery.com/jquery-3.1.1.min.js"
+            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+            crossorigin="anonymous"></script>
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>-->
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="style/index.css">
+    <link href="https://fonts.googleapis.com/css?family=Lobster+Two:400,700" rel="stylesheet">
+    <!--<script src="http://timeago.yarp.com/jquery.timeago.js" type="text/javascript"></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/livestamp/1.1.2/livestamp.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="main">
+    <div class="row">
+        <div class="col-md-5 bg-white ">
+            <div class="row" style="margin-bottom: 5px;height: 55px;background-color: #ECF0F1;">
+                    <div class="col-xs-4" style="text-align: -webkit-left; height: 55px; padding-left: 27px">
+                        <img id="auth-img" class="img-rounded" style="
+               margin-top: 3px">
+                    </div>
+                    <div class="col-xs-4" style="height: 55px; text-align: center; padding-top: 12px; color: #34495E">
+                        <p id="auth-name"></p>
+                    </div>
+                    <div class="col-xs-4" style="height: 55px">
+
+                    </div>
+
+            </div>
+            <!--<div class=" row border-bottom padding-sm titletext" style="height: 40px;">-->
+                <!--Tweets-->
+            <!--</div>-->
+
+                <!--<div class="grid">-->
+
+                    <div class="search">
+
+                        <div class="form__field">
+                            <input id="serachBarText" type="search" name="search" placeholder="Search..." class="form__input">
+                            <button id="searchBarButton" class="btn button"><i id="searchicon" class="fa fa-search"></i></button>
+                            <!--<input type="submit" value="search" class="button">-->
+                        </div>
+
+                    </div>
+
+                <!--</div>-->
+
+
+            <!-- =============================================================== -->
+            <!-- member list -->
+            <ul id="friend-list" class="friend-list">
+
+                <!--<li class="active bounceInDown">-->
+                    <!--<a href="#" class="clearfix">-->
+                        <!--<img src="http://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">-->
+                        <!--<div class="friend-name">-->
+                            <!--<strong>John Doe</strong>-->
+                        <!--</div>-->
+                        <!--<div class="last-message text-muted">Hello, Are you there?</div>-->
+                        <!--<small class="time text-muted">Just now</small>-->
+                        <!--<small class="chat-alert label label-danger">1</small>-->
+                    <!--</a>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<a href="#" class="clearfix">-->
+                        <!--<img src="http://bootdey.com/img/Content/user_2.jpg" alt="" class="img-circle">-->
+                        <!--<div class="friend-name">-->
+                            <!--<strong>Jane Doe</strong>-->
+                        <!--</div>-->
+                        <!--<div class="last-message text-muted">Lorem ipsum dolor sit amet.</div>-->
+                        <!--<small class="time text-muted">5 mins ago</small>-->
+                        <!--<small class="chat-alert text-muted"><i class="fa fa-check"></i></small>-->
+                    <!--</a>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<a href="#" class="clearfix">-->
+                        <!--<img src="http://bootdey.com/img/Content/user_3.jpg" alt="" class="img-circle">-->
+                        <!--<div class="friend-name">-->
+                            <!--<strong>Kate</strong>-->
+                        <!--</div>-->
+                        <!--<div class="last-message text-muted">Lorem ipsum dolor sit amet.</div>-->
+                        <!--<small class="time text-muted">Yesterday</small>-->
+                        <!--<small class="chat-alert text-muted"><i class="fa fa-reply"></i></small>-->
+                    <!--</a>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<a href="#" class="clearfix">-->
+                        <!--<img src="http://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">-->
+                        <!--<div class="friend-name">-->
+                            <!--<strong>Kate</strong>-->
+                        <!--</div>-->
+                        <!--<div class="last-message text-muted">Lorem ipsum dolor sit amet.</div>-->
+                        <!--<small class="time text-muted">Yesterday</small>-->
+                        <!--<small class="chat-alert text-muted"><i class="fa fa-reply"></i></small>-->
+                    <!--</a>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<a href="#" class="clearfix">-->
+                        <!--<img src="http://bootdey.com/img/Content/user_2.jpg" alt="" class="img-circle">-->
+                        <!--<div class="friend-name">-->
+                            <!--<strong>Kate</strong>-->
+                        <!--</div>-->
+                        <!--<div class="last-message text-muted">Lorem ipsum dolor sit amet.</div>-->
+                        <!--<small class="time text-muted">Yesterday</small>-->
+                        <!--<small class="chat-alert text-muted"><i class="fa fa-reply"></i></small>-->
+                    <!--</a>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<a href="#" class="clearfix">-->
+                        <!--<img src="http://bootdey.com/img/Content/user_6.jpg" alt="" class="img-circle">-->
+                        <!--<div class="friend-name">-->
+                            <!--<strong>Kate</strong>-->
+                        <!--</div>-->
+                        <!--<div class="last-message text-muted">Lorem ipsum dolor sit amet.</div>-->
+                        <!--<small class="time text-muted">Yesterday</small>-->
+                        <!--<small class="chat-alert text-muted"><i class="fa fa-reply"></i></small>-->
+                    <!--</a>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<a href="#" class="clearfix">-->
+                        <!--<img src="http://bootdey.com/img/Content/user_5.jpg" alt="" class="img-circle">-->
+                        <!--<div class="friend-name">-->
+                            <!--<strong>Kate</strong>-->
+                        <!--</div>-->
+                        <!--<div class="last-message text-muted">Lorem ipsum dolor sit amet.</div>-->
+                        <!--<small class="time text-muted">Yesterday</small>-->
+                        <!--<small class="chat-alert text-muted"><i class="fa fa-reply"></i></small>-->
+                    <!--</a>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<a href="#" class="clearfix">-->
+                        <!--<img src="http://bootdey.com/img/Content/user_2.jpg" alt="" class="img-circle">-->
+                        <!--<div class="friend-name">-->
+                            <!--<strong>Jane Doe</strong>-->
+                        <!--</div>-->
+                        <!--<div class="last-message text-muted">Lorem ipsum dolor sit amet.</div>-->
+                        <!--<small class="time text-muted">5 mins ago</small>-->
+                        <!--<small class="chat-alert text-muted"><i class="fa fa-check"></i></small>-->
+                    <!--</a>-->
+                <!--</li>-->
+            </ul>
+        </div>
+
+        <!--=========================================================-->
+        <!-- selected chat -->
+        <div class="col-md-7 bg-white " id="right-panel">
+            <div id="right-bar">
+                <!--<div class="row">-->
+                    <!--<div class="col-xs-8 barh">-->
+                        <!--<div>-->
+                            <!--<p id="cname" class="simplep">-->
+                            <!--</p>-->
+                            <!--<p id="csname" class="simplep">-->
+                            <!--</p>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="col-xs-4 barh">-->
+                        <!--<div class="barh centered-align">-->
+                            <!--<button id="closeButton" class="btn btn-warning"><i class="fa fa-check-square-o" aria-hidden="true"></i> Case</button>-->
+                            <!--<button id="deleteButton" class="btn btn-danger" data-toggle="modal" data-target="#deleteChatModal"><i class="fa fa-trash" aria-hidden="true"></i></button>-->
+                        <!--</div>-->
+                <!--</div>-->
+            </div>
+
+            <div class="chat-message">
+                <ul class="chat">
+                    <!--<li class="left clearfix">-->
+                <!--<span class="chat-img pull-left">-->
+                  <!--<img src="http://bootdey.com/img/Content/user_3.jpg" alt="User Avatar">-->
+                <!--</span>-->
+                        <!--<div class="chat-body clearfix">-->
+                            <!--<div class="header">-->
+                                <!--<strong class="primary-font">John Doe</strong>-->
+                                <!--<small class="pull-right text-muted"><i class="fa fa-clock-o"></i> 12 mins ago</small>-->
+                            <!--</div>-->
+                            <!--<p>-->
+                                <!--Lorem ipsum dolor sit amet, consectetur adipiscing elit.-->
+                            <!--</p>-->
+                        <!--</div>-->
+                    <!--</li>-->
+                    <!--&lt;!&ndash;<p class="notification">Unread Messages&ndash;&gt;-->
+                        <!--&lt;!&ndash;<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<time>100</time>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</p>&ndash;&gt;-->
+                    <!--<li class="right clearfix">-->
+                <!--<span class="chat-img pull-right">-->
+                  <!--<img src="http://bootdey.com/img/Content/user_1.jpg" alt="User Avatar">-->
+                <!--</span>-->
+                        <!--<div class="chat-body clearfix">-->
+                            <!--<div class="header">-->
+                                <!--<strong class="primary-font">Sarah</strong>-->
+                                <!--<small class="pull-right text-muted"><i class="fa fa-clock-o"></i> 13 mins ago</small>-->
+                            <!--</div>-->
+                            <!--<p>-->
+                                <!--Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales at.-->
+                            <!--</p>-->
+                        <!--</div>-->
+                    <!--</li>-->
+                    <!--<li class="left clearfix">-->
+                <!--<span class="chat-img pull-left">-->
+                  <!--<img src="http://bootdey.com/img/Content/user_3.jpg" alt="User Avatar">-->
+                <!--</span>-->
+                        <!--<div class="chat-body clearfix">-->
+                            <!--<div class="header">-->
+                                <!--<strong class="primary-font">John Doe</strong>-->
+                                <!--<small class="pull-right text-muted"><i class="fa fa-clock-o"></i> 12 mins ago</small>-->
+                            <!--</div>-->
+                            <!--<p>-->
+                                <!--Lorem ipsum dolor sit amet, consectetur adipiscing elit.-->
+                            <!--</p>-->
+                        <!--</div>-->
+                    <!--</li>-->
+                    <!--<li class="right clearfix">-->
+                <!--<span class="chat-img pull-right">-->
+                  <!--<img src="http://bootdey.com/img/Content/user_1.jpg" alt="User Avatar">-->
+                <!--</span>-->
+                        <!--<div class="chat-body clearfix">-->
+                            <!--<div class="header">-->
+                                <!--<strong class="primary-font">Sarah</strong>-->
+                                <!--<small class="pull-right text-muted"><i class="fa fa-clock-o"></i> 13 mins ago</small>-->
+                            <!--</div>-->
+                            <!--<p>-->
+                                <!--Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales at.-->
+                            <!--</p>-->
+                        <!--</div>-->
+                    <!--</li>-->
+                    <!--<li class="left clearfix">-->
+                <!--<span class="chat-img pull-left">-->
+                  <!--<img src="http://bootdey.com/img/Content/user_3.jpg" alt="User Avatar">-->
+                <!--</span>-->
+                        <!--<div class="chat-body clearfix">-->
+                            <!--<div class="header">-->
+                                <!--<strong class="primary-font">John Doe</strong>-->
+                                <!--<small class="pull-right text-muted"><i class="fa fa-clock-o"></i> 12 mins ago</small>-->
+                            <!--</div>-->
+                            <!--<p>-->
+                                <!--Lorem ipsum dolor sit amet, consectetur adipiscing elit.-->
+                            <!--</p>-->
+                        <!--</div>-->
+                    <!--</li>-->
+                    <!--<li class="right clearfix">-->
+                <!--<span class="chat-img pull-right">-->
+                  <!--<img src="http://bootdey.com/img/Content/user_1.jpg" alt="User Avatar">-->
+                <!--</span>-->
+                        <!--<div class="chat-body clearfix">-->
+                            <!--<div class="header">-->
+                                <!--<strong class="primary-font">Sarah</strong>-->
+                                <!--<small class="pull-right text-muted"><i class="fa fa-clock-o"></i> 13 mins ago</small>-->
+                            <!--</div>-->
+                            <!--<p>-->
+                                <!--Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales at.-->
+                            <!--</p>-->
+                        <!--</div>-->
+                    <!--</li>-->
+                    <!--<li class="right clearfix">-->
+                <!--<span class="chat-img pull-right">-->
+                  <!--<img src="http://bootdey.com/img/Content/user_1.jpg" alt="User Avatar">-->
+                <!--</span>-->
+                        <!--<div class="chat-body clearfix">-->
+                            <!--<div class="header">-->
+                                <!--<strong class="primary-font">Sarah</strong>-->
+                                <!--<small class="pull-right text-muted"><i class="fa fa-clock-o"></i> 13 mins ago</small>-->
+                            <!--</div>-->
+                            <!--<p>-->
+                                <!--Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales at.-->
+                            <!--</p>-->
+                        <!--</div>-->
+                    <!--</li>-->
+                </ul>
+            </div>
+            <div id="anchorChatBox">
+
+            </div>
+            <!--<div class="chat-box bg-white">-->
+                <!--<div class="input-group">-->
+                    <!--<input class="form-control border no-shadow no-rounded" id="sendMsgText" placeholder="Type your message here">-->
+                    <!--<span class="input-group-btn">-->
+                        <!--<button class="btn btn-success no-rounded" id="sendMsgButton" type="button">TWEET</button>-->
+                        <!--<button class="btn btn-success no-rounded" id="sendDMButton" type="button">DM</button>-->
+                    <!--</span>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+    </div>
+</div>
+
+    <div class="modal fade bd-example-modal-sm" id="deleteChatModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <!--<div class="modal-header">-->
+                    <!--<h5 class="modal-title" id="exampleModalLabel">Attention!</h5>-->
+                    <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+                        <!--<span aria-hidden="true">&times;</span>-->
+                    <!--</button>-->
+                <!--</div>-->
+                <div id="deleteChatBody" class="modal-body">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                    <button id="deleteChatButton" type="button" class="btn btn-danger">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade bd-example-modal-sm" id="closeCaseModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div id="closeCaseBody" class="modal-body">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                    <button id="CloseCaseButton" type="button" class="btn btn-success">Close Case</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!--<li>-->
+<!--<a href="#" class="clearfix">-->
+<!--<img src="http://bootdey.com/img/Content/user_2.jpg" alt="" class="img-circle">-->
+<!--<div class="friend-name">-->
+<!--<strong>Jane Doe</strong>-->
+<!--</div>-->
+<!--<div class="last-message text-muted">Lorem ipsum dolor sit amet.</div>-->
+<!--<small class="time text-muted">5 mins ago</small>-->
+<!--<small class="chat-alert text-muted"><i class="fa fa-check"></i></small>-->
+<!--</a>-->
+<!--</li>-->
+
+<!--<li class="active bounceInDown">-->
+<!--<a href="#" class="clearfix">-->
+<!--<img src="http://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">-->
+<!--<div class="friend-name">-->
+<!--<strong>John Doe</strong>-->
+<!--</div>-->
+<!--<div class="last-message text-muted">Hello, Are you there?</div>-->
+<!--<small class="time text-muted">Just now</small>-->
+<!--<small class="chat-alert label label-danger">1</small>-->
+<!--</a>-->
+<!--</li>-->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js"></script>
+
+<script type="text/javascript">
+    var socket = io();
+    var followingCheck;
+    socket.on('tweet',function (data) {
+        var date = new Date(data["created_at"]);
+        var uid = data ["user"]["id_str"];
+        if (data["new_user"] == false) {
+            $("[userid='"+uid +"']").remove()
+        }
+
+        var openC = localStorage["openCon"];
+            if(uid === openC) {
+                //socket.emit("ConveResNewReq", uid)
+                socket.emit("ConveReqPlain", uid)
+            }
+
+        var $part1 = $("<a href=\"javascript:;\" " +
+            "class=\"clearfix\">  " +
+            "<img src=\"" +data["user"]["profile_image_url_https"] + "\" " + "alt=\"\" class=\"img-circle\"" +
+            "<div class=\"friend-name\">" +
+            "<strong style='padding-left: 8px'>" +data["user"]["name"] + "</strong>" +
+            "</div>" +
+            "<div class=\"last-message text-muted\">" +data["text"] +"</div>" +
+            "<small class=\"time text-muted timeago\">"
+            + "<span data-livestamp=\"" + date
+            +"\"></span>"
+            +"</small>");
+
+        var $part2Simple = $("<small id='redAnchor' class=\"chat-alert text-muted\"><i class=\"fa fa-check\"></i></small></a>");
+        var $part2Red = $("<small id='redAnchor' class=\"chat-alert label label-danger\">"
+            + data['unreadCount']
+            +"</small>");
+        if(data['unreadCount'] == 0){
+            var $part3 = $part1.append($part2Simple)
+        } else if (data['unreadCount'] >= 0 && localStorage.openCon != uid){
+            var $part3 = $part1.append($part2Red)
+        } else {
+            var $part3 = $part1.append($part2Simple);
+             socket.emit("makeUnreadZeroReq", uid)
+        }
+
+//        $("<li class='tweet' userid = \""+data['user']['id_str'] +"\"" +
+//            "username = \"" +data['user']['screen_name'] +"\"" +
+//            ">").html("<a href=\"javascript:;\" " +
+//            "class=\"clearfix\">  " +
+//            "<img src=\"" +data["user"]["profile_image_url_https"] + "\" " + "alt=\"\" class=\"img-circle\"" +
+//            "<div class=\"friend-name\">" +
+//            "<strong style='padding-left: 8px'>" +data["user"]["name"] + "</strong>" +
+//            "</div>" +
+//            "<div class=\"last-message text-muted\">" +data["text"] +"</div>" +
+//            "<small class=\"time text-muted timeago\">"
+//            + "<span data-livestamp=\"" + date
+//            +"\"></span>"
+////            +date.getHours() +":" +date.getMinutes() +" " + date.toDateString()
+//            +"</small>" +
+//            "<small class=\"chat-alert text-muted\"><i class=\"fa fa-check\"></i></small>" +
+//            "</a>").hide().prependTo(".friend-list").slideDown();
+        $("<li class='tweet' userid = \""+data['user']['id_str'] +"\"" +
+            "username = \"" +data['user']['screen_name'] +"\"" +
+            "unreadCount = \"" +data['unreadCount'] +"\"" +
+            "fullname = \"" +data['user']['name'] + "\"" +
+            ">").html($part3).hide().prependTo(".friend-list").slideDown();
+        if(localStorage.openCon == uid){
+            $("[userid='"+uid +"']").addClass("active")
+        }
+
+
+    });
+
+    socket.on('tweetNew',function (data) {
+        var date = new Date(data["created_at"]);
+        $("[userid='"+data["user"]["id_str"]+"']").html(
+            "<a href=\"javascript:;\" " +
+            "class=\"clearfix\">  " +
+            "<img src=\"" +data["user"]["profile_image_url_https"] + "\" " + "alt=\"\" class=\"img-circle\"" +
+            "<div class=\"friend-name\">" +
+            "<strong style='padding-left: 8px'>" +data["user"]["name"] + "</strong>" +
+            "</div>" +
+            "<div class=\"last-message text-muted\">" +data["text"] +"</div>" +
+            "<small class=\"time text-muted timeago\">"
+            + "<span data-livestamp=\"" + date
+            +"\"></span>"
+            +"</small>" +
+            "<small class=\"chat-alert text-muted\"><i class=\"fa fa-check\"></i></small>" +
+            "</a>"
+        )
+    });
+
+    socket.on('ConveRes', function (doc) {
+        $(".chat").html('');
+        var msg = doc['msg'];
+        var msga = [];
+        var unreadCount = $(".friend-list li.active").attr('unreadcount');
+        msg.forEach(function (j) {
+            msga.unshift(j)
+        });
+        msga.forEach(function (m, i) {
+            var liclass = '';
+            var spanclass = '';
+            var d = new Date();
+            var date =  new Date(m["timestamp"]);
+            if(m['utype'] == 'sender'){
+                liclass = 'left';
+                spanclass = 'pull-left'
+            } else {
+                liclass = 'right clearfix';
+                spanclass = 'chat-img pull-right'
+            }
+
+            if((i == unreadCount) && (i != 0)){
+                $(".chat").prepend(
+                    "<p class=\"notification\" id='unreadbar'>Unread Messages" +
+                    "<span class=\"glyphicon glyphicon-chevron-down\" aria-hidden=\"true\"></span>" +
+                    "<time id='unreadCount'>" + unreadCount +
+                    "</time>" +
+                    "</p>"
+                )
+            }
+
+
+            var isDM = false
+            if(m['mtype'] == 'dm') {
+                isDM = true
+            }
+
+            var header = isDM ? "headerblue": "headergreen"
+
+            $(".chat").prepend(
+                "<li class = \"clearfix " +liclass + "\">"  +
+                "<span class= \"chat-img " + spanclass + "\">" +
+                "<img src=\""+m['uimg']  +"\">" +
+                "</span>" +
+                "<div class=\"chat-body clearfix\">" +
+                "<div class=\""
+                + header
+                + "\">" +
+                "<strong class=\"primary-font\">" +m['uname'] +"</strong>" +
+                "<small class=\"pull-right text-muted\"><i class=\"fa fa-clock-o\"></i> "
+                    + "<span data-livestamp=\"" + date
+                +"\"></span>"
+
+//                +date.getHours() +":" +date.getMinutes() +" " + date.toDateString()
+                +"</small>" +
+                "</div>"+
+                "<p>" +m['mtext'] +
+                "</p>" +
+                "</div>" +
+                "</li>"
+            )
+
+        });
+       // $(".friend-list li.active").attr('unreadcount', 0)
+        if(unreadCount == 0){
+            $(".chat").scrollTop($(".chat").get(0).scrollHeight);
+        } else {
+            var container = $('.chat'),
+                scrollTo = $('#unreadbar');
+            container.scrollTop(
+                scrollTo.offset().top - container.offset().top + container.scrollTop()
+            );
+            $(".friend-list li.active").attr('unreadcount', 0)
+        }
+    });
+
+    socket.on('ConveResPlain', function (doc) {
+        $(".friend-list li.active").attr('unreadcount', 0);
+//        var uc = $("#unreadCount").html();
+//        console.log(uc)
+        $(".chat").html('');
+        var msg = doc['msg'];
+        var msga = [];
+        var unreadCount = $(".friend-list li.active").attr('unreadcount');
+        msg.forEach(function (j) {
+            msga.unshift(j)
+        });
+        msga.forEach(function (m, i) {
+            var liclass = '';
+            var spanclass = '';
+            var d = new Date();
+            var date =  new Date(m["timestamp"]);
+            if(m['utype'] == 'sender'){
+                liclass = 'left';
+                spanclass = 'pull-left'
+            } else {
+                liclass = 'right clearfix';
+                spanclass = 'chat-img pull-right'
+            }
+//            if((i == uc) && (i != 0)){
+//                $(".chat").prepend(
+//                    "<p class=\"notification\" id='unreadbar'>Unread Messages" +
+//                    "<span class=\"glyphicon glyphicon-chevron-down\" aria-hidden=\"true\"></span>" +
+//                    "<time id='unreadCount'>" + uc +
+//                    "</time>" +
+//                    "</p>"
+//                )
+//            }
+
+            var isDM = false
+            if(m['mtype'] == 'dm') {
+                isDM = true
+            }
+
+            var header = isDM ? "headerblue": "headergreen"
+
+            $(".chat").prepend(
+                "<li class = \"clearfix " +liclass + "\">"  +
+                "<span class= \"chat-img " + spanclass + "\">" +
+                "<img src=\""+m['uimg']  +"\">" +
+                "</span>" +
+                "<div class=\"chat-body clearfix\">" +
+                "<div class=\"" + header
+            +"\">" +
+                "<strong class=\"primary-font\">" +m['uname'] +"</strong>" +
+                "<small class=\"pull-right text-muted\"><i class=\"fa fa-clock-o\"></i> "
+                + "<span data-livestamp=\"" + date
+                +"\"></span>"
+
+//                +date.getHours() +":" +date.getMinutes() +" " + date.toDateString()
+                +"</small>" +
+                "</div>"+
+                "<p>" +m['mtext'] +
+                "</p>" +
+                "</div>" +
+                "</li>"
+            )
+
+        });
+        // $(".friend-list li.active").attr('unreadcount', 0)
+        $(".chat").scrollTop($(".chat").get(0).scrollHeight);
+    });
+
+    socket.on('ConveResNew', function (doc) {
+        var msg = doc['msg'];
+//        var msga = []
+//        msg.forEach(function (j) {
+//            msga.unshift(j)
+//        })
+        lastmsg = msg[msg.length - 1];
+            var liclass = '';
+            var spanclass = '';
+            var date = new Date(lastmsg["timestamp"]);
+            if(lastmsg['utype'] == 'sender'){
+                liclass = 'left';
+                spanclass = 'pull-left'
+            } else {
+                liclass = 'right clearfix';
+                spanclass = 'chat-img pull-right'
+            }
+        var isDM = false
+        if(lastmsg['mtype'] == 'dm') {
+            isDM = true
+        }
+
+        var header = isDM ? "headerblue": "headergreen"
+            $(  "<li class = \"clearfix " +liclass + "\">"  +
+                "<span class= \"chat-img " + spanclass + "\">" +
+                "<img src=\""+lastmsg['uimg']  +"\">" +
+                "</span>" +
+                "<div class=\"chat-body clearfix\">" +
+                "<div class=\"" +header
+                +"\">" +
+                "<strong class=\"primary-font\">" +lastmsg['uname'] +"</strong>" +
+                "<small class=\"pull-right text-muted\"><i class=\"fa fa-clock-o\"></i> "
+                + "<span data-livestamp=\"" + date
+                +"\"></span>"
+//                +date.getHours() +":" +date.getMinutes() +" " + date.toDateString()
+                +"</small>" +
+                "</div>"+
+                "<p>" +lastmsg['mtext'] +
+                "</p>" +
+                "</div>" +
+                "</li>"
+            ).hide().appendTo(".chat").slideDown();
+        $('.chat').animate({scrollTop: $('.chat').prop("scrollHeight")}, 500);
+
+//        msga.forEach(function (m) {
+//            var liclass = ''
+//            var spanclass = ''
+//            var date = new Date(m["timestamp"])
+//            if(m['utype'] == 'sender'){
+//                liclass = 'left'
+//                spanclass = 'pull-left'
+//            } else {
+//                liclass = 'right clearfix'
+//                spanclass = 'chat-img pull-right'
+//            }
+//            $(  "<li class = \"clearfix " +liclass + "\">"  +
+//                "<span class= \"chat-img " + spanclass + "\">" +
+//                "<img src=\""+m['uimg']  +"\">" +
+//                "</span>" +
+//                "<div class=\"chat-body clearfix\">" +
+//                "<div class=\"header\">" +
+//                "<strong class=\"primary-font\">" +m['uname'] +"</strong>" +
+//                "<small class=\"pull-right text-muted\"><i class=\"fa fa-clock-o\"></i> "
+//                + jQuery.timeago(m["timestamp"])
+////                +date.getHours() +":" +date.getMinutes() +" " + date.toDateString()
+//                +"</small>" +
+//                "</div>"+
+//                "<p>" +m['mtext'] +
+//                "</p>" +
+//                "</div>" +
+//                "</li>"
+//            ).hide().prependTo(".chat").slideDown();
+//
+//        })
+    });
+    
+    socket.on("searchRes", function (tweetArray) {
+        $(".friend-list").html('')
+        tweetArray.forEach(function (data) {
+            var date = new Date(data["created_at"]);
+            var uid = data ["user"]["id_str"];
+//            if (data["new_user"] == false) {
+//                $("[userid='"+uid +"']").remove()
+//            }
+
+
+            var $part1 = $("<a href=\"javascript:;\" " +
+                "class=\"clearfix\">  " +
+                "<img src=\"" +data["user"]["profile_image_url_https"] + "\" " + "alt=\"\" class=\"img-circle\"" +
+                "<div class=\"friend-name\">" +
+                "<strong style='padding-left: 8px'>" +data["user"]["name"] + "</strong>" +
+                "</div>" +
+                "<div class=\"last-message text-muted\">" +data["text"] +"</div>" +
+                "<small class=\"time text-muted timeago\">"
+                + "<span data-livestamp=\"" + date
+                +"\"></span>"
+                +"</small>");
+
+            var $part2Simple = $("<small id='redAnchor' class=\"chat-alert text-muted\"><i class=\"fa fa-check\"></i></small></a>");
+            var $part2Red = $("<small id='redAnchor' class=\"chat-alert label label-danger\">"
+                + data['unreadCount']
+                +"</small>");
+            if(data['unreadCount'] == 0){
+                var $part3 = $part1.append($part2Simple)
+            } else if (data['unreadCount'] >= 0 && localStorage.openCon != uid){
+                var $part3 = $part1.append($part2Red)
+            } else {
+                var $part3 = $part1.append($part2Simple);
+                socket.emit("makeUnreadZeroReq", uid)
+            }
+
+            $("<li class='tweet' userid = \""+data['user']['id_str'] +"\"" +
+                "username = \"" +data['user']['screen_name'] +"\"" +
+                "unreadCount = \"" +data['unreadCount'] +"\"" +
+                ">").html($part3).prependTo(".friend-list");
+//            if(localStorage.openCon == uid){
+//                $("[userid='"+uid +"']").addClass("active")
+//            }
+        })
+    })
+
+    socket.on("resultNotFound", function (val) {
+        console.log("no result found")
+        $(".friend-list").html('')
+//        $(".friend-list").append("<p>No Search Result Found</p>")
+//        $("<li />", { text: "No Search Result FOund" }).appendTo(".friend-list");
+        $("<li></li>"
+        ).html("<p id='No-Result-Text'>No Search Result Found</p> ").appendTo(".friend-list");
+
+    })
+
+    socket.on("checkFollowingRes", function (following) {
+      //  console.log(following)
+        if(following == false){
+            followingCheck = false;
+            $("#anchorChatBox").html(
+                "<div class=\"chat-box bg-white\" id='chatboxdiv'>" +
+                "<div class=\"input-group\">" +
+                "<input class=\"form-control border no-shadow no-rounded\" id=\"sendMsgText\" placeholder=\"Type your message here\" data-toggle=\"popover\" data-placement=\"top\" title=\"Error!\" data-html=\"true\" data-content=\"Message\">" +
+                "<span class=\"input-group-btn\">" +
+                "<button class=\"btn btn-success no-rounded\" onclick=\"this.blur();\" id=\"sendTweetButton\" type=\"button\">TWEET</button>" +
+                "<button class=\"btn btn-primary no-rounded\" onclick=\"this.blur();\" data-toggle=\"popover\" data-trigger=\"hover\" data-placement=\"top\" title=\"<center>Sorry!</center>\" data-html=\"true\" data-content=\"<center>User is not following you. So, you can't send <strong>Direct Message</strong> to that user.</center>\" id=\"sendDmButton\" type=\"button\">DM</button>" +
+                "</span>" +
+                "</div>" +
+                "</div>"
+            )
+
+        } else {
+            followingCheck = true;
+            $("#anchorChatBox").html(
+                "<div class=\"chat-box bg-white\" id='chatboxdiv'>" +
+                "<div class=\"input-group\">" +
+                "<input class=\"form-control border no-shadow no-rounded\" id=\"sendMsgText\" placeholder=\"Type your message here\" data-toggle=\"popover\" data-placement=\"top\" title=\"Error!\" data-html=\"true\" data-content=\"Message\">" +
+                "<span class=\"input-group-btn\">" +
+                "<button class=\"btn btn-success no-rounded\" id=\"sendTweetButton\" onclick=\"this.blur();\" type=\"button\">TWEET</button>" +
+                "<button class=\"btn btn-primary no-rounded\" id=\"sendDmButton\" onclick=\"this.blur();\" type=\"button\">DM</button>" +
+                "</span>" +
+                "</div>" +
+                "</div>"
+            )
+        }
+    })
+
+    socket.on('fetchAuthUserInfoRes', function (userInfo) {
+        $("#auth-name").text(userInfo.name)
+        $("#auth-img").attr("src", userInfo.profile_image_url_https)
+//        console.log(userInfo)
+    })
+
+    socket.on('deleteChatRes', function (val) {
+        socket.emit('fetchTweetReq', true)
+    })
+
+    socket.on('closeCaseRes', function (val) {
+        socket.emit('fetchTweetReq', true)
+    })
+
+</script>
+<script type="text/javascript" language="JavaScript">
+    var removeDiv = $('#removeDiv');
+    $(document).on("click", ".tweet", function() {
+        var user = $(this).attr('userid');
+        socket.emit("ConveReq", user);
+        var fullname = $(this).attr("fullname")
+        localStorage["openCon"] = user;
+        $(".friend-list li.active").removeClass("active");
+        $(this).addClass("active");
+        $("#right-bar").html("<div class=\"row\">" +
+            "<div class=\"col-xs-8 barh\">" +
+            "<div>" +
+            "<p id=\"cname\" class=\"simplep\">" +
+            "</p>" +
+            "<p id=\"csname\" class=\"simplep\">" +
+            "</p>" +
+            "</div>" +
+            "</div>" +
+            "<div class=\"col-xs-4 barh\">" +
+            "<div class=\"barh centered-align\">" +
+            "<button id=\"closeButton\" class=\"btn btn-warning\" data-toggle='modal' uid ="+user +" data-target='#closeCaseModal'><i class=\"fa fa-check-square-o\" aria-hidden=\"true\"></i> Case</button>" +
+            "<button id=\"deleteButton\" class=\"btn btn-danger\" data-toggle=\"modal\" uid =\""+user +"\" data-target=\"#deleteChatModal\"><i class=\"fa fa-trash\" aria-hidden=\"true\"></i></button>" +
+            "</div>" +
+            "</div>")
+        $("#right-bar").css('background-color', '#ECF0F1')
+        socket.emit("checkFollowingReq", $(this).attr('username'));
+        socket.emit("makeUnreadZeroReq", user);
+       // var $redAnchor = $(".active small #redAnchor")
+        $(".active #redAnchor").removeClass("label label-danger");
+        $(".active #redAnchor").addClass("text-muted");
+        $(".active #redAnchor").html("<i class=\"fa fa-check\"></i>");
+        $("#csname").text("@"+$(this).attr("username"))
+        $("#cname").text(fullname)
+        $("#closeCaseBody").text("Close the case of \""+fullname +"\"?")
+        $("#deleteChatBody").text("Delete chat with \""+fullname +"\"?")
+
+    });
+
+    $(window).bind('beforeunload',function(){
+        console.log("refreshh");
+        localStorage.removeItem("openCon")
+
+    });
+</script>
+
+<script>
+    $(function(){
+        socket.emit('fetchTweetReq', true)
+        socket.emit('fetchAuthUserInfoReq', true)
+    });
+    $(document).on("click", "#sendTweetButton", function() {
+        $(".friend-list li.active").attr('unreadcount', 0);
+        var text = $("#sendMsgText").val();
+        if(text.length == 0) {
+            $("#sendMsgText").attr("data-content", "Your Message can not be blank.")
+            $("#sendMsgText").popover('show')
+            tmp = setTimeout(function(){$('.popover').popover('destroy')}, 3000);
+        } else if(text.length > 140) {
+            $("#sendMsgText").attr("data-content", "Tweet can not have more than 140 Character")
+            $("#sendMsgText").popover('show')
+            tmp = setTimeout(function(){$('.popover').popover('destroy')}, 3000);
+        }else {
+            var username = $(".friend-list li.active").attr("username")
+            var userid = $(".friend-list li.active").attr("userid");
+            var msgjson = {
+                text: text,
+                username: username,
+                userid: userid
+            };
+            $("#sendMsgText").val('');
+            socket.emit('sendTweetRequest', msgjson);
+            $("p").remove(".notification")
+        }
+
+    });
+    $(document).on("click", "#sendDmButton", function() {
+        $(".friend-list li.active").attr('unreadcount', 0);
+        var text = $("#sendMsgText").val();
+        if(text.length == 0) {
+            $("#sendMsgText").attr("data-content", "Your Message can not be blank.")
+            $("#sendMsgText").popover('show')
+            tmp = setTimeout(function(){$('.popover').popover('destroy')}, 3000);
+        } else if(text.length > 140) {
+            $("#sendMsgText").attr("data-content", "Dm can not have more than 140 Character")
+            $("#sendMsgText").popover('show')
+            tmp = setTimeout(function(){$('.popover').popover('destroy')}, 3000);
+        } else {
+            if(followingCheck == true){
+                var username = $(".friend-list li.active").attr("username");
+                var userid = $(".friend-list li.active").attr("userid");
+                var msgjson = {
+                    text: text,
+                    username: username,
+                    userid: userid
+                };
+                $("#sendMsgText").val('');
+                socket.emit('sendDmRequest', msgjson)
+            }
+            $("p").remove(".notification")
+        }
+
+    });
+
+    $(document).on("keypress keyup", "#serachBarText", function () {
+        var searchQuery = $("#serachBarText").val()
+        if(searchQuery == ''){
+            $("#searchicon").removeClass("fa-times-circle").addClass("fa-search")
+            socket.emit('fetchTweetReq', true)
+        } else {
+            $("#searchicon").removeClass("fa-search").addClass("fa-times-circle")
+            socket.emit('searchReq', searchQuery)
+        }
+       // console.log(searchQuery)
+    })
+
+
+    $(document).on("click", "#searchBarButton", function () {
+        $("#serachBarText").val('')
+        $(".friend-list").html('')
+        $("#searchicon").removeClass("fa-times-circle").addClass("fa-search")
+        socket.emit('fetchTweetReq', true)
+    })
+
+    $(document).on("click", "#deleteChatButton", function () {
+        $("#deleteChatModal").modal('hide')
+        var uid = $(".active").attr('userid')
+        var json = { 'userid': uid}
+        socket.emit("deleteChat", json)
+        $(".chat").html('')
+        $("#friend-list").html('')
+        $("#right-bar").html('')
+        $("#anchorChatBox").html('')
+        $("#right-bar").css('background-color', '#f9f9f9')
+
+    })
+
+    $(document).on("click", "#CloseCaseButton", function () {
+        $("#closeCaseModal").modal('hide')
+        var uid = $(".active").attr('userid')
+        var json = { 'userid': uid}
+        socket.emit("closeCase", json)
+        $(".chat").html('')
+        $("#friend-list").html('')
+        $("#right-bar").html('')
+        $("#anchorChatBox").html('')
+        $("#right-bar").css('background-color', '#f9f9f9')
+    })
+
+    $('body').popover({
+        selector: '#sendDmButton',
+        trigger: "hover"
+    });
+
+</script>
+<!--<script src="http://netdna.bootstrapcdn.com/b
