@@ -1,17 +1,17 @@
 // var Twitter = require('twitter')
 // var client = new Twitter({
-//     consumer_key: 'maFcfwQDi8aojKzgofcUClmVI',
-//     consumer_secret: 'BHo4XaViO6hfy78UwUL9jTPTyW751nMFVhKY0OB9vm3MtNLYDS',
-//     access_token_key: '360556223-HHQS3JZYr0p4KgxfZYUtQyBy9NZ29wlpxog0zuSN',
-//     access_token_secret: 'DPpwFW1A9TgSGu65xnbLjuLvOPWRlGIMci6w15KufKo1q'
+//     consumer_key: '',
+//     consumer_secret: '',
+//     access_token_key: '',
+//     access_token_secret: ''
 // });
 
 // var Twit = require('twit')
 // var T = new Twit({
-//     consumer_key:         'maFcfwQDi8aojKzgofcUClmVI',
-//     consumer_secret:      'BHo4XaViO6hfy78UwUL9jTPTyW751nMFVhKY0OB9vm3MtNLYDS',
-//     access_token:         '360556223-HHQS3JZYr0p4KgxfZYUtQyBy9NZ29wlpxog0zuSN',
-//     access_token_secret:  'DPpwFW1A9TgSGu65xnbLjuLvOPWRlGIMci6w15KufKo1q'
+//     consumer_key:         '',
+//     consumer_secret:      '',
+//     access_token:         '',
+//     access_token_secret:  ''
 // })
 
 var accountCredential = require("../model/accountCredentials")
